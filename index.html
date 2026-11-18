@@ -92,6 +92,12 @@ summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 .reveal:focus-visible, .progress button:focus-visible, .progress input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .item.locked.revealed .reveal { display: none; }
 @media (prefers-reduced-motion: no-preference) { .item .inner { transition: filter .2s ease; } }
+.srcs { width: 100%; border-collapse: collapse; font-size: 13px; }
+.srcs th, .srcs td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.srcs th { color: var(--muted); font-weight: 500; font-size: 12px; }
+.srcs td.n { color: var(--muted); }
+.pill.st-ok { color: var(--good); } .pill.st-partial { color: var(--info); } .pill.st-failed { color: var(--bad); } .pill.st-blocked { color: var(--muted); }
+.tablewrap { overflow-x: auto; }
 .legend { display: flex; flex-wrap: wrap; gap: 8px; font-size: 12px; color: var(--muted); align-items: center; }
 footer { color: var(--muted); font-size: 12px; text-align: left; }
 @media (max-width: 560px) { .hero .brand { padding: 12px 16px 14px; } h1 { font-size: 30px; } }
@@ -236,6 +242,104 @@ footer { color: var(--muted); font-size: 12px; text-align: left; }
     "https://wreg.com/news/nation-and-world/grand-theft-auto-vi-finally-arrives-heres-what-one-early-player-thinks/",
     "https://www.talkesport.com/gta-6/how-are-people-playing-gta-6-already-new-zealand-trick/",
     "https://www.svg.com/2316051/gta-6-tips-before-start-playing/"
+  ],
+  "sourceStatus": [
+    {
+      "name": "Rockstar Support",
+      "url": "https://support.rockstargames.com",
+      "status": "ok",
+      "note": "Reads directly",
+      "checked": "2026-11-18T12:22:00-05:00",
+      "failStreak": 0
+    },
+    {
+      "name": "Rockstar Newswire",
+      "url": "https://www.rockstargames.com/newswire",
+      "status": "partial",
+      "note": "Articles found through search",
+      "checked": "2026-11-18T12:22:00-05:00",
+      "failStreak": 0
+    },
+    {
+      "name": "YouTube",
+      "url": "https://www.youtube.com",
+      "status": "partial",
+      "note": "Titles and descriptions through search",
+      "checked": "2026-11-18T12:22:00-05:00",
+      "failStreak": 0
+    },
+    {
+      "name": "Fextralife GTA 6 wiki",
+      "url": "https://gta6.wiki.fextralife.com",
+      "status": "ok",
+      "note": "Reads directly; no walkthrough yet",
+      "checked": "2026-11-18T12:22:00-05:00",
+      "failStreak": 0
+    },
+    {
+      "name": "PowerPyx",
+      "url": "https://www.powerpyx.com",
+      "status": "ok",
+      "note": "Reads directly; no GTA 6 guides yet",
+      "checked": "2026-11-18T12:22:00-05:00",
+      "failStreak": 0
+    },
+    {
+      "name": "GameRant",
+      "url": "https://gamerant.com",
+      "status": "ok",
+      "note": "Reads directly",
+      "checked": "2026-11-18T12:22:00-05:00",
+      "failStreak": 0
+    },
+    {
+      "name": "GTAForums",
+      "url": "https://gtaforums.com",
+      "status": "partial",
+      "note": "Threads found through search",
+      "checked": "2026-11-18T12:22:00-05:00",
+      "failStreak": 0
+    },
+    {
+      "name": "Dexerto",
+      "url": "https://www.dexerto.com/gta/",
+      "status": "ok",
+      "note": "Reads directly",
+      "checked": "2026-11-18T12:22:00-05:00",
+      "failStreak": 0
+    },
+    {
+      "name": "GamesRadar",
+      "url": "https://www.gamesradar.com",
+      "status": "ok",
+      "note": "Reads directly",
+      "checked": "2026-11-18T12:22:00-05:00",
+      "failStreak": 0
+    },
+    {
+      "name": "Sportskeeda",
+      "url": "https://www.sportskeeda.com/gta",
+      "status": "ok",
+      "note": "Reads directly",
+      "checked": "2026-11-18T12:22:00-05:00",
+      "failStreak": 0
+    },
+    {
+      "name": "IGN",
+      "url": "https://www.ign.com/wikis/gta-6",
+      "status": "blocked",
+      "note": "Blocked for page reading; not used",
+      "checked": "2026-11-18T12:22:00-05:00",
+      "failStreak": 0
+    },
+    {
+      "name": "Reddit",
+      "url": "https://www.reddit.com/r/GTA6/",
+      "status": "blocked",
+      "note": "Blocked for page reading; reaches us through news coverage",
+      "checked": "2026-11-18T12:22:00-05:00",
+      "failStreak": 0
+    }
   ]
 }
 </script>
@@ -314,6 +418,16 @@ footer { color: var(--muted); font-size: 12px; text-align: left; }
   }
   function setProg(v) { prog = v; saveProg(v); renderProgress(); renderApp(); }
 
+  function sourceTable(arr) {
+    if (!arr || !arr.length) return '<p class="empty">Not checked yet.</p>';
+    var labels = { ok: 'Working', partial: 'Partial', failed: 'Failed', blocked: 'Blocked' };
+    var rows = arr.map(function (s) {
+      var st = labels[s.status] ? s.status : 'failed';
+      var name = s.url ? '<a href="' + esc(safeUrl(s.url)) + '" target="_blank" rel="noopener">' + esc(s.name) + '</a>' : esc(s.name);
+      return '<tr><td>' + name + '</td><td><span class="pill st-' + st + '">' + labels[st] + '</span></td><td class="n">' + esc(s.note || '') + (s.checked ? '<br>' + fmt(s.checked) : '') + '</td></tr>';
+    }).join('');
+    return '<div class="tablewrap"><table class="srcs"><thead><tr><th>Source</th><th>Status</th><th>Notes</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
+  }
   function renderApp() {
     var patches = (d.patches || []).map(function (p) {
       return { tag: 'CONFIRMED', title: (p.version ? 'v' + p.version + ': ' : '') + (p.title || 'Update'), body: p.body, date: p.date, sources: p.url ? [{ name: 'Details', url: p.url }] : [] };
@@ -325,7 +439,8 @@ footer { color: var(--muted); font-size: 12px; text-align: left; }
       section('Glitches and bugs', 'with version and status', list(d.glitches, 'None reported yet.')) +
       section('Mission branches', 'how missions can play out', list(d.missionBranches, 'None mapped yet.')) +
       section('Missable content', 'what you can lose for good', list(d.missables, 'None confirmed yet.')) +
-      section('Patch notes', 'newest first', list(patches, 'No patches yet.'));
+      section('Patch notes', 'newest first', list(patches, 'No patches yet.')) +
+      section('Source status', 'checked every scan', sourceTable(d.sourceStatus));
   }
 
   app.addEventListener('click', function (e) {
