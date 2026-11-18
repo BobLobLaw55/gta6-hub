@@ -3,23 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GTA 6 Co-pilot</title>
+<title>Feeling Sixy with my Clam</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Anton&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
 :root {
-  /* Vice City after dark: deep bay-blue ground, sunset coral accent, one column of scannable cards */
-  --ground: #0f1424;
-  --panel: #171e33;
-  --line: #2a3352;
-  --ink: #eef1f8;
-  --muted: #9aa3bd;
-  --accent: #ff7a6b;
-  --good: #4fd1a1;
-  --warn: #f5c451;
-  --bad: #ff5d7a;
-  --info: #7fb2ff;
+  /* Leonida at dusk: purple night ground, hot-pink neon accent, teal and sunset orange support; sunset hero over one column of cards */
+  --ground: #120c24;
+  --panel: #1c1438;
+  --line: #3a2b5e;
+  --ink: #f6f0ff;
+  --muted: #b5a8d4;
+  --accent: #ff3e9a;
+  --teal: #2ee6d6;
+  --sunset: #ffa24c;
+  --good: #4fe0a8;
+  --warn: #ffd45c;
+  --bad: #ff5d6e;
+  --info: #7fb8ff;
+  --brand: "Bungee", "Arial Black", Impact, sans-serif;
   --display: "Anton", Impact, "Arial Narrow", sans-serif;
   --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
@@ -28,14 +31,20 @@
 * { box-sizing: border-box; }
 html, body { margin: 0; }
 body { background: var(--ground); color: var(--ink); font: 15px/1.5 var(--body); }
-.wrap { max-width: 760px; margin: 0 auto; padding: 28px 16px 64px; display: grid; gap: 20px; }
-header { display: grid; gap: 6px; border-bottom: 2px solid var(--accent); padding-bottom: 16px; }
-h1 { font: 44px/1 var(--display); letter-spacing: .5px; margin: 0; text-transform: uppercase; text-wrap: balance; }
-h1 span { color: var(--accent); }
+.wrap { max-width: 760px; margin: 0 auto; padding: 20px 16px 64px; display: grid; gap: 20px; }
+header { display: grid; gap: 12px; }
+.hero { position: relative; height: 230px; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: #2a1250; }
+.hero svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.hero .brand { position: absolute; left: 22px; top: 20px; right: 22px; display: grid; gap: 6px; }
+h1 { font: 44px/1.02 var(--brand); margin: 0; color: #fff; text-shadow: 0 0 18px rgba(255, 62, 154, .55), 3px 3px 0 #1a0b36; text-wrap: balance; }
+h1 span { color: var(--accent); text-shadow: 0 0 20px rgba(255, 62, 154, .7), 3px 3px 0 #1a0b36; }
+.tagline { font: 600 12px/1 var(--mono); letter-spacing: 2px; text-transform: uppercase; color: var(--teal); text-shadow: 0 0 10px rgba(46, 230, 214, .5); }
 .meta { color: var(--muted); font-size: 13px; display: flex; flex-wrap: wrap; gap: 4px 16px; }
 .meta b { color: var(--ink); font-weight: 600; }
-section { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; display: grid; gap: 12px; }
-h2 { font: 22px/1.1 var(--display); letter-spacing: .4px; text-transform: uppercase; margin: 0; display: flex; align-items: baseline; gap: 10px; }
+section { background: var(--panel); border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 10px; padding: 16px 18px; display: grid; gap: 12px; }
+section:nth-of-type(3n+2) { border-top-color: var(--teal); }
+section:nth-of-type(3n) { border-top-color: var(--sunset); }
+h2 { font: 22px/1.1 var(--display); letter-spacing: .6px; text-transform: uppercase; margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
 h2 small { font: 500 12px var(--body); color: var(--muted); text-transform: none; letter-spacing: 0; }
 .items { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 .item { display: grid; gap: 4px; padding: 10px 0 10px 12px; border-left: 3px solid var(--line); }
@@ -47,7 +56,8 @@ h2 small { font: 500 12px var(--body); color: var(--muted); text-transform: none
 .item .title { font-weight: 600; }
 .item p { margin: 0; color: var(--ink); max-width: 65ch; }
 .item .src { font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 12px; }
-a { color: var(--accent); text-underline-offset: 2px; }
+a { color: var(--teal); text-underline-offset: 2px; }
+a:hover { color: var(--accent); }
 a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
 .pill { font: 500 11px/1 var(--mono); letter-spacing: .4px; padding: 4px 6px; border-radius: 4px; border: 1px solid currentColor; text-transform: uppercase; }
 .pill.CONFIRMED { color: var(--good); }
@@ -62,13 +72,60 @@ details { border-top: 1px dashed var(--line); padding-top: 10px; }
 summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 .legend { display: flex; flex-wrap: wrap; gap: 8px; font-size: 12px; color: var(--muted); align-items: center; }
 footer { color: var(--muted); font-size: 12px; text-align: left; }
-@media (max-width: 420px) { h1 { font-size: 34px; } }
+@media (max-width: 480px) { h1 { font-size: 30px; } .hero { height: 200px; } .hero .brand { left: 16px; top: 16px; } }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <h1>GTA 6 <span>Co-pilot</span></h1>
+    <div class="hero">
+      <svg viewBox="0 0 760 230" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#2a1250"/>
+            <stop offset=".45" stop-color="#7a1f78"/>
+            <stop offset=".75" stop-color="#ff3e9a"/>
+            <stop offset="1" stop-color="#ffa24c"/>
+          </linearGradient>
+          <linearGradient id="sun" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ffe066"/>
+            <stop offset="1" stop-color="#ff3e9a"/>
+          </linearGradient>
+          <mask id="stripes">
+            <rect width="760" height="230" fill="#fff"/>
+            <rect x="0" y="150" width="760" height="4" fill="#000"/>
+            <rect x="0" y="162" width="760" height="6" fill="#000"/>
+            <rect x="0" y="176" width="760" height="8" fill="#000"/>
+          </mask>
+        </defs>
+        <rect width="760" height="230" fill="url(#sky)"/>
+        <circle cx="560" cy="190" r="92" fill="url(#sun)" mask="url(#stripes)"/>
+        <rect x="0" y="192" width="760" height="38" fill="#120c24"/>
+        <g stroke="#2ee6d6" stroke-opacity=".35" stroke-width="1">
+          <line x1="0" y1="200" x2="760" y2="200"/>
+          <line x1="0" y1="212" x2="760" y2="212"/>
+          <line x1="380" y1="192" x2="380" y2="230"/>
+          <line x1="300" y1="192" x2="200" y2="230"/>
+          <line x1="460" y1="192" x2="560" y2="230"/>
+          <line x1="220" y1="192" x2="20" y2="230"/>
+          <line x1="540" y1="192" x2="740" y2="230"/>
+        </g>
+        <g fill="none" stroke="#120c24" stroke-linecap="round" transform="translate(-40 0)">
+          <path d="M690 196 C 688 160, 676 120, 652 92" stroke-width="7"/>
+          <path d="M652 92 C 632 84, 610 90, 596 110" stroke-width="6"/>
+          <path d="M652 92 C 640 72, 620 62, 600 66" stroke-width="6"/>
+          <path d="M652 92 C 662 70, 682 62, 704 70" stroke-width="6"/>
+          <path d="M652 92 C 674 88, 694 98, 704 118" stroke-width="6"/>
+          <path d="M652 92 C 650 72, 658 56, 670 48" stroke-width="6"/>
+          <path d="M736 196 C 736 172, 744 150, 760 132" stroke-width="6"/>
+          <path d="M760 132 C 748 120, 732 120, 722 130" stroke-width="5"/>
+        </g>
+      </svg>
+      <div class="brand">
+        <span class="tagline">GTA 6 story-mode co-pilot</span>
+        <h1>Feeling Sixy <span>with my Clam</span></h1>
+      </div>
+    </div>
     <div class="meta" id="meta"></div>
     <div class="legend"><span class="pill CONFIRMED">Confirmed</span>multiple sources <span class="pill REPORTED">Reported</span>one source <span class="pill RUMOR">Rumor</span>unverified <span class="pill WARNING">Heads up</span>spoiler or risk</div>
   </header>
