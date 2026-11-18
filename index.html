@@ -11,60 +11,63 @@
 <meta name="apple-mobile-web-app-title" content="Sixy Clam">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Anton&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Archivo+Narrow:wght@600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  /* Leonida at dusk: purple night ground, hot-pink neon accent, teal and sunset orange support; sunset hero over one column of cards */
-  --ground: #120c24;
-  --panel: #1c1438;
-  --line: #3a2b5e;
-  --ink: #f6f0ff;
-  --muted: #b5a8d4;
-  --accent: #ff3e9a;
-  --teal: #2ee6d6;
-  --sunset: #ffa24c;
-  --good: #4fe0a8;
-  --warn: #ffd45c;
-  --bad: #ff5d6e;
-  --info: #7fb8ff;
-  --brand: "Bungee", "Arial Black", Impact, sans-serif;
-  --display: "Anton", Impact, "Arial Narrow", sans-serif;
-  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  /* Flat game-guide look: charcoal ground, warm off-white type, one hot-pink accent, rules instead of cards */
+  --ground: #121114;
+  --raise: #1b1a1f;
+  --line: #2c2a31;
+  --ink: #f3efe8;
+  --muted: #a39fa8;
+  --accent: #ff4f9a;
+  --good: #3ecf8e;
+  --warn: #f2c14e;
+  --bad: #ff6b5e;
+  --info: #6aa8ff;
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --narrow: "Archivo Narrow", "Arial Narrow", Arial, sans-serif;
+  --body: "Archivo", "Helvetica Neue", Arial, sans-serif;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; }
-body { background: var(--ground); color: var(--ink); font: 15px/1.5 var(--body); }
-.wrap { max-width: 760px; margin: 0 auto; padding: 20px 16px 64px; display: grid; gap: 20px; }
-header { display: grid; gap: 12px; }
-.hero { position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: #2a1250; }
-.hero img { display: block; width: 100%; height: auto; aspect-ratio: 2 / 1; object-fit: cover; }
-.hero .brand { padding: 14px 20px 16px; display: grid; gap: 6px; background: var(--panel); border-top: 2px solid var(--accent); }
-h1 { font: 44px/1.02 var(--brand); margin: 0; color: #fff; text-shadow: 0 0 18px rgba(255, 62, 154, .55), 3px 3px 0 #1a0b36; text-wrap: balance; }
-h1 span { color: var(--accent); text-shadow: 0 0 20px rgba(255, 62, 154, .7), 3px 3px 0 #1a0b36; }
-.tagline { font: 600 12px/1 var(--mono); letter-spacing: 2px; text-transform: uppercase; color: var(--teal); text-shadow: 0 0 10px rgba(46, 230, 214, .5); }
-.meta { color: var(--muted); font-size: 13px; display: flex; flex-wrap: wrap; gap: 4px 16px; }
+body { background: var(--ground); color: var(--ink); font: 15px/1.55 var(--body); }
+.wrap { max-width: 760px; margin: 0 auto; padding: 20px 16px 64px; display: grid; gap: 22px; }
+header { display: grid; gap: 14px; }
+.hero { display: grid; }
+.hero img { display: block; width: 100%; height: auto; aspect-ratio: 2 / 1; object-fit: cover; border-radius: 6px; background: var(--raise); }
+.hero .brand { padding: 16px 0 0; display: grid; gap: 6px; }
+h1 { font: 800 40px/1 var(--display); letter-spacing: -0.02em; margin: 0; color: var(--ink); text-wrap: balance; }
+h1 span { color: var(--accent); }
+.tagline { font: 500 14px/1.4 var(--body); color: var(--muted); max-width: 60ch; }
+.meta { color: var(--muted); font-size: 13px; display: flex; flex-wrap: wrap; gap: 2px 16px; border-top: 1px solid var(--line); padding-top: 12px; }
 .meta b { color: var(--ink); font-weight: 600; }
-section { background: var(--panel); border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 10px; padding: 16px 18px; display: grid; gap: 12px; }
-section:nth-of-type(3n+2) { border-top-color: var(--teal); }
-section:nth-of-type(3n) { border-top-color: var(--sunset); }
-h2 { font: 22px/1.1 var(--display); letter-spacing: .6px; text-transform: uppercase; margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
-h2 small { font: 500 12px var(--body); color: var(--muted); text-transform: none; letter-spacing: 0; }
-.items { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-.item { display: grid; gap: 4px; padding: 10px 0 10px 12px; border-left: 3px solid var(--line); }
-.item.CONFIRMED { border-left-color: var(--good); }
-.item.REPORTED { border-left-color: var(--info); }
-.item.RUMOR { border-left-color: var(--warn); }
-.item.WARNING { border-left-color: var(--bad); }
-.item .top { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; }
-.item .title { font-weight: 600; }
+.progress { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; font-size: 14px; color: var(--muted); }
+.progress b { color: var(--ink); font-weight: 600; }
+.progress .stepper { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; background: var(--raise); }
+.progress button, .progress input { font: 600 14px var(--body); color: var(--ink); background: transparent; border: 0; height: 32px; }
+.progress button { width: 34px; cursor: pointer; }
+.progress button:hover { background: var(--line); }
+.progress input { width: 46px; text-align: center; font-variant-numeric: tabular-nums; border-left: 1px solid var(--line); border-right: 1px solid var(--line); -moz-appearance: textfield; }
+.progress input::-webkit-outer-spin-button, .progress input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.progress .clear { width: auto; padding: 0 10px; font-weight: 500; font-size: 13px; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; }
+main { display: grid; gap: 34px; }
+section { display: grid; gap: 4px; }
+h2 { font: 700 20px/1.1 var(--narrow); letter-spacing: .02em; text-transform: uppercase; margin: 0 0 6px; padding-bottom: 8px; border-bottom: 2px solid var(--ink); display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+h2 small { font: 500 13px var(--body); color: var(--muted); text-transform: none; letter-spacing: 0; }
+.items { list-style: none; margin: 0; padding: 0; display: grid; }
+.item { display: grid; gap: 6px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.item:last-child { border-bottom: 0; }
+.item .inner { display: grid; gap: 5px; }
+.item .top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.item .title { font-weight: 700; font-size: 16px; line-height: 1.3; flex-basis: 100%; }
 .item p { margin: 0; color: var(--ink); max-width: 65ch; }
-.item .src { font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 12px; }
-a { color: var(--teal); text-underline-offset: 2px; }
-a:hover { color: var(--accent); }
-a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
-.pill { font: 500 11px/1 var(--mono); letter-spacing: .4px; padding: 4px 6px; border-radius: 4px; border: 1px solid currentColor; text-transform: uppercase; }
+.item .src { font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 14px; }
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+.pill { font: 700 11px/1 var(--body); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
 .pill.CONFIRMED { color: var(--good); }
 .pill.REPORTED { color: var(--info); }
 .pill.RUMOR { color: var(--warn); }
@@ -72,35 +75,23 @@ a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outli
 .pill.status-working { color: var(--good); }
 .pill.status-patched { color: var(--muted); }
 .pill.status-unconfirmed { color: var(--warn); }
-.empty { color: var(--muted); font-size: 14px; margin: 0; }
-details { border-top: 1px dashed var(--line); padding-top: 10px; }
-summary { cursor: pointer; color: var(--muted); font-size: 14px; }
-.progress { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
-.progress b { color: var(--ink); }
-.progress .stepper { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
-.progress button, .progress input { font: 600 14px var(--body); color: var(--ink); background: transparent; border: 0; height: 32px; }
-.progress button { width: 32px; cursor: pointer; }
-.progress button:hover { background: var(--line); }
-.progress input { width: 48px; text-align: center; font-variant-numeric: tabular-nums; border-left: 1px solid var(--line); border-right: 1px solid var(--line); -moz-appearance: textfield; }
-.progress input::-webkit-outer-spin-button, .progress input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-.progress .clear { width: auto; padding: 0 10px; font-weight: 500; font-size: 12px; color: var(--muted); border: 1px solid var(--line); border-radius: 8px; }
-.item .inner { display: grid; gap: 4px; }
+.empty { color: var(--muted); font-size: 14px; margin: 0; padding: 12px 0; }
 .item.locked .inner { filter: blur(7px); user-select: none; pointer-events: none; }
 .item.locked.revealed .inner { filter: none; user-select: auto; pointer-events: auto; }
-.reveal { justify-self: start; font: 500 12px/1 var(--mono); letter-spacing: .3px; color: var(--accent); background: rgba(255, 62, 154, .08); border: 1px solid var(--accent); border-radius: 6px; padding: 7px 10px; cursor: pointer; }
-.reveal:hover { background: rgba(255, 62, 154, .18); }
+.reveal { justify-self: start; font: 600 13px/1 var(--body); color: var(--ink); background: var(--raise); border: 1px solid var(--line); border-radius: 4px; padding: 8px 12px; cursor: pointer; }
+.reveal:hover { border-color: var(--accent); }
 .reveal:focus-visible, .progress button:focus-visible, .progress input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .item.locked.revealed .reveal { display: none; }
 @media (prefers-reduced-motion: no-preference) { .item .inner { transition: filter .2s ease; } }
 .srcs { width: 100%; border-collapse: collapse; font-size: 13px; }
-.srcs th, .srcs td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.srcs th, .srcs td { text-align: left; padding: 8px 8px 8px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
 .srcs th { color: var(--muted); font-weight: 500; font-size: 12px; }
 .srcs td.n { color: var(--muted); }
 .pill.st-ok { color: var(--good); } .pill.st-partial { color: var(--info); } .pill.st-failed { color: var(--bad); } .pill.st-blocked { color: var(--muted); }
 .tablewrap { overflow-x: auto; }
-.legend { display: flex; flex-wrap: wrap; gap: 8px; font-size: 12px; color: var(--muted); align-items: center; }
-footer { color: var(--muted); font-size: 12px; text-align: left; }
-@media (max-width: 560px) { .hero .brand { padding: 12px 16px 14px; } h1 { font-size: 30px; } }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px; color: var(--muted); align-items: baseline; }
+footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line); padding-top: 14px; }
+@media (max-width: 560px) { h1 { font-size: 32px; } }
 </style>
 </head>
 <body>
@@ -109,13 +100,13 @@ footer { color: var(--muted); font-size: 12px; text-align: left; }
     <div class="hero">
       <img src="banner-bong.jpg" width="1672" height="836" alt="A woman in a bikini lounging with a clam in gold sunglasses and a gold chain, surrounded by whiskey, energy drinks and snacks, with burning cars and a crashed plane on a sunset beach behind them">
       <div class="brand">
-        <span class="tagline">GTA 6 story-mode co-pilot</span>
         <h1>Feeling Sixy <span>with my Clam</span></h1>
+        <span class="tagline">GTA 6 story-mode finds, glitches, missables and patches. Checked every 4 hours.</span>
       </div>
     </div>
     <div class="meta" id="meta"></div>
     <div class="progress" id="progress"></div>
-    <div class="legend"><span class="pill CONFIRMED">Confirmed</span>multiple sources <span class="pill REPORTED">Reported</span>one source <span class="pill RUMOR">Rumor</span>unverified <span class="pill WARNING">Heads up</span>spoiler or risk</div>
+    <div class="legend"><span><span class="pill CONFIRMED">Confirmed</span> 2+ sources</span><span><span class="pill REPORTED">Reported</span> 1 source</span><span><span class="pill RUMOR">Rumor</span> unverified</span><span><span class="pill WARNING">Heads up</span> risk or spoiler</span></div>
   </header>
   <main id="app" style="display:grid;gap:20px"></main>
   <footer>Story mode only. Anything tied to a story mission or upgrade past your progress is blurred until you tap it. Your progress is saved on this device only.</footer>
@@ -406,11 +397,11 @@ footer { color: var(--muted); font-size: 12px; text-align: left; }
   function renderProgress() {
     var el = document.getElementById('progress');
     var val = prog === null ? '' : prog;
-    el.innerHTML = '<span><b>My progress:</b> story missions finished</span>' +
+    el.innerHTML = '<span><b>Story missions finished</b></span>' +
       '<span class="stepper"><button type="button" id="p-down" aria-label="One fewer mission">&minus;</button>' +
       '<input id="p-val" type="number" inputmode="numeric" min="0" max="300" value="' + val + '" placeholder="?" aria-label="Story missions finished">' +
       '<button type="button" id="p-up" aria-label="One more mission">+</button></span>' +
-      (prog === null ? '<span>Not set: every mission spoiler stays blurred.</span>' : '<button type="button" class="clear" id="p-clear">Clear</button>');
+      (prog === null ? '<span>Set this to unblur tips for missions you have reached.</span>' : '<button type="button" class="clear" id="p-clear">Clear</button>');
     document.getElementById('p-down').onclick = function () { setProg(Math.max(0, (prog || 0) - 1)); };
     document.getElementById('p-up').onclick = function () { setProg((prog === null ? 0 : prog) + 1); };
     document.getElementById('p-val').onchange = function () { var v = parseInt(this.value, 10); setProg(isNaN(v) ? null : Math.max(0, Math.min(300, v))); };
