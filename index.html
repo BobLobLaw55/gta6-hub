@@ -75,6 +75,23 @@ a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outli
 .empty { color: var(--muted); font-size: 14px; margin: 0; }
 details { border-top: 1px dashed var(--line); padding-top: 10px; }
 summary { cursor: pointer; color: var(--muted); font-size: 14px; }
+.progress { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+.progress b { color: var(--ink); }
+.progress .stepper { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.progress button, .progress input { font: 600 14px var(--body); color: var(--ink); background: transparent; border: 0; height: 32px; }
+.progress button { width: 32px; cursor: pointer; }
+.progress button:hover { background: var(--line); }
+.progress input { width: 48px; text-align: center; font-variant-numeric: tabular-nums; border-left: 1px solid var(--line); border-right: 1px solid var(--line); -moz-appearance: textfield; }
+.progress input::-webkit-outer-spin-button, .progress input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.progress .clear { width: auto; padding: 0 10px; font-weight: 500; font-size: 12px; color: var(--muted); border: 1px solid var(--line); border-radius: 8px; }
+.item .inner { display: grid; gap: 4px; }
+.item.locked .inner { filter: blur(7px); user-select: none; pointer-events: none; }
+.item.locked.revealed .inner { filter: none; user-select: auto; pointer-events: auto; }
+.reveal { justify-self: start; font: 500 12px/1 var(--mono); letter-spacing: .3px; color: var(--accent); background: rgba(255, 62, 154, .08); border: 1px solid var(--accent); border-radius: 6px; padding: 7px 10px; cursor: pointer; }
+.reveal:hover { background: rgba(255, 62, 154, .18); }
+.reveal:focus-visible, .progress button:focus-visible, .progress input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.item.locked.revealed .reveal { display: none; }
+@media (prefers-reduced-motion: no-preference) { .item .inner { transition: filter .2s ease; } }
 .legend { display: flex; flex-wrap: wrap; gap: 8px; font-size: 12px; color: var(--muted); align-items: center; }
 footer { color: var(--muted); font-size: 12px; text-align: left; }
 @media (max-width: 560px) { .hero .brand { position: static; padding: 14px 16px 16px; background: var(--panel); } h1 { font-size: 30px; } }
@@ -91,29 +108,121 @@ footer { color: var(--muted); font-size: 12px; text-align: left; }
       </div>
     </div>
     <div class="meta" id="meta"></div>
+    <div class="progress" id="progress"></div>
     <div class="legend"><span class="pill CONFIRMED">Confirmed</span>multiple sources <span class="pill REPORTED">Reported</span>one source <span class="pill RUMOR">Rumor</span>unverified <span class="pill WARNING">Heads up</span>spoiler or risk</div>
   </header>
   <main id="app" style="display:grid;gap:20px"></main>
-  <footer>Story mode only. Light spoilers: nothing here reveals story beats unless you open a spoiler section.</footer>
+  <footer>Story mode only. Anything tied to a story mission or upgrade past your progress is blurred until you tap it. Your progress is saved on this device only.</footer>
 </div>
 
 <script id="data" type="application/json">
 {
-  "lastUpdated": "2026-11-18T09:00:00-05:00",
-  "gameVersion": "01.002.001 (pre-load)",
+  "lastUpdated": "2026-11-18T09:55:00-05:00",
+  "gameVersion": "01.002.001 (launch, NZ live)",
   "whatsNew": [
-    {"tag": "REPORTED", "title": "US PS5 unlock is likely midnight Eastern tonight", "body": "PlayStation Store listings show the US and Canada unlocking at midnight ET on Nov 19 (9 p.m. PT Nov 18). One other outlet lists 6 a.m. ET instead, so the timing isn't settled.", "sources": [{"name": "Pro Game Guides", "url": "https://progameguides.com/gta/gta-6-launch-day-guide/"}, {"name": "New Game Network", "url": "https://www.newgamenetwork.com/gta-6-release-time/"}], "date": "2026-11-18"},
-    {"tag": "CONFIRMED", "title": "Pre-load is live: up to 212 GB", "body": "Pre-load opened Nov 10. Free about 250 GB to leave room for a possible day-one patch.", "sources": [{"name": "Overgear", "url": "https://overgear.com/guides/gta-6/what-to-do-before-launch/"}, {"name": "Leonida Playbook", "url": "https://leonidaplaybook.com/guides/day-one-patch/"}], "date": "2026-11-18"},
-    {"tag": "REPORTED", "title": "Second pre-launch update, still no patch notes", "body": "Version 01.002.001 is 602 MB on PS5 and 1.6 GB on Xbox. Rockstar hasn't confirmed a day-one patch, so another download could still land. Leave the console in rest mode with auto-downloads on.", "sources": [{"name": "Tech Times", "url": "https://www.techtimes.com/articles/330886/20261117/gta-6-gets-second-pre-launch-update-602-mb-ps5-16-gb-xbox-still-no-patch-notes.htm"}], "date": "2026-11-17"},
-    {"tag": "WARNING", "title": "Spoiler risk is high today", "body": "The review embargo is rumored to lift this morning, and a hacker group claims it has a playable build and could post endings. Mute GTA 6 keywords on social apps until you've played.", "sources": [{"name": "Notebookcheck", "url": "https://www.notebookcheck.net/GTA-6-review-copy-may-have-been-sent-to-YouTuber-who-posts-release-date-spoilers.1433695.0.html"}, {"name": "IBTimes", "url": "https://www.ibtimes.co.uk/gta-6-leaks-cyberleek-playable-build-spoilers-1815584"}], "date": "2026-11-18"}
+    {
+      "tag": "WARNING",
+      "title": "It's live in New Zealand and streamers are already playing",
+      "body": "Kiwi players got in at midnight their time, and Twitch streamers there are already broadcasting their playthroughs. Skip GTA 6 streams and clips today if you want the story fresh.",
+      "sources": [
+        {
+          "name": "NZ Herald",
+          "url": "https://www.nzherald.co.nz/world/gta-6-hits-new-zealand-kiwi-gamers-first-in-the-world-to-play-as-global-launch-begins-in-nz/JAYVNPFB45DPRJPHDWIIQNS6NQ/"
+        },
+        {
+          "name": "WREG / AP",
+          "url": "https://wreg.com/news/nation-and-world/grand-theft-auto-vi-finally-arrives-heres-what-one-early-player-thinks/"
+        }
+      ],
+      "date": "2026-11-18"
+    },
+    {
+      "tag": "WARNING",
+      "title": "People are using the \"New Zealand trick\" to play early",
+      "body": "Some players outside NZ are getting in early by changing console region settings, a trick used for other big launches. Neither Rockstar nor Sony has said whether it's allowed, so it could put your account at risk.",
+      "sources": [
+        {
+          "name": "TalkEsport",
+          "url": "https://www.talkesport.com/gta-6/how-are-people-playing-gta-6-already-new-zealand-trick/"
+        }
+      ],
+      "date": "2026-11-18"
+    },
+    {
+      "tag": "REPORTED",
+      "title": "Steal an older, low-key car first",
+      "body": "Early advice is to grab something older and less flashy as your first stolen car, since theft has bigger consequences this time and a flashy car makes the opening harder.",
+      "sources": [
+        {
+          "name": "SVG",
+          "url": "https://www.svg.com/2316051/gta-6-tips-before-start-playing/"
+        }
+      ],
+      "date": "2026-11-18"
+    }
   ],
-  "trending": [],
+  "trending": [
+    {
+      "tag": "REPORTED",
+      "title": "US PS5 unlock is likely midnight Eastern tonight",
+      "body": "PlayStation Store listings show the US and Canada unlocking at midnight ET on Nov 19 (9 p.m. PT Nov 18). One other outlet lists 6 a.m. ET instead, so the timing isn't settled.",
+      "sources": [
+        {
+          "name": "Pro Game Guides",
+          "url": "https://progameguides.com/gta/gta-6-launch-day-guide/"
+        },
+        {
+          "name": "New Game Network",
+          "url": "https://www.newgamenetwork.com/gta-6-release-time/"
+        }
+      ],
+      "date": "2026-11-18"
+    },
+    {
+      "tag": "CONFIRMED",
+      "title": "Pre-load is live: up to 212 GB",
+      "body": "Pre-load opened Nov 10. Free about 250 GB to leave room for a possible day-one patch.",
+      "sources": [
+        {
+          "name": "Overgear",
+          "url": "https://overgear.com/guides/gta-6/what-to-do-before-launch/"
+        },
+        {
+          "name": "Leonida Playbook",
+          "url": "https://leonidaplaybook.com/guides/day-one-patch/"
+        }
+      ],
+      "date": "2026-11-18"
+    },
+    {
+      "tag": "WARNING",
+      "title": "Spoiler risk is high today",
+      "body": "The review embargo is rumored to lift this morning, and a hacker group claims it has a playable build and could post endings. Mute GTA 6 keywords on social apps until you've played.",
+      "sources": [
+        {
+          "name": "Notebookcheck",
+          "url": "https://www.notebookcheck.net/GTA-6-review-copy-may-have-been-sent-to-YouTuber-who-posts-release-date-spoilers.1433695.0.html"
+        },
+        {
+          "name": "IBTimes",
+          "url": "https://www.ibtimes.co.uk/gta-6-leaks-cyberleek-playable-build-spoilers-1815584"
+        }
+      ],
+      "date": "2026-11-18"
+    }
+  ],
   "openWorldTips": [],
   "glitches": [],
   "missionBranches": [],
   "missables": [],
   "patches": [
-    {"date": "2026-11-17", "version": "01.002.001", "title": "Pre-load update", "body": "Pre-load update: 602 MB PS5, 1.6 GB Xbox. No patch notes.", "url": "https://www.techtimes.com/articles/330886/20261117/gta-6-gets-second-pre-launch-update-602-mb-ps5-16-gb-xbox-still-no-patch-notes.htm"}
+    {
+      "date": "2026-11-17",
+      "version": "01.002.001",
+      "title": "Pre-load update",
+      "body": "Pre-load update: 602 MB PS5, 1.6 GB Xbox. No patch notes.",
+      "url": "https://www.techtimes.com/articles/330886/20261117/gta-6-gets-second-pre-launch-update-602-mb-ps5-16-gb-xbox-still-no-patch-notes.htm"
+    }
   ],
   "seen": [
     "https://progameguides.com/gta/gta-6-launch-day-guide/",
@@ -122,7 +231,11 @@ footer { color: var(--muted); font-size: 12px; text-align: left; }
     "https://leonidaplaybook.com/guides/day-one-patch/",
     "https://www.techtimes.com/articles/330886/20261117/gta-6-gets-second-pre-launch-update-602-mb-ps5-16-gb-xbox-still-no-patch-notes.htm",
     "https://www.notebookcheck.net/GTA-6-review-copy-may-have-been-sent-to-YouTuber-who-posts-release-date-spoilers.1433695.0.html",
-    "https://www.ibtimes.co.uk/gta-6-leaks-cyberleek-playable-build-spoilers-1815584"
+    "https://www.ibtimes.co.uk/gta-6-leaks-cyberleek-playable-build-spoilers-1815584",
+    "https://www.nzherald.co.nz/world/gta-6-hits-new-zealand-kiwi-gamers-first-in-the-world-to-play-as-global-launch-begins-in-nz/JAYVNPFB45DPRJPHDWIIQNS6NQ/",
+    "https://wreg.com/news/nation-and-world/grand-theft-auto-vi-finally-arrives-heres-what-one-early-player-thinks/",
+    "https://www.talkesport.com/gta-6/how-are-people-playing-gta-6-already-new-zealand-trick/",
+    "https://www.svg.com/2316051/gta-6-tips-before-start-playing/"
   ]
 }
 </script>
@@ -134,6 +247,11 @@ footer { color: var(--muted); font-size: 12px; text-align: left; }
   var app = document.getElementById('app');
   if (!d) { app.innerHTML = '<p class="empty">The update data is broken. The next scan will rewrite it.</p>'; return; }
 
+  var KEY = 'sixyclam-missions-done';
+  function loadProg() { try { var v = localStorage.getItem(KEY); return v === null ? null : Math.max(0, parseInt(v, 10) || 0); } catch (e) { return null; } }
+  function saveProg(v) { try { if (v === null) localStorage.removeItem(KEY); else localStorage.setItem(KEY, String(v)); } catch (e) {} }
+  var prog = loadProg();
+
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
   function safeUrl(u) { return /^https?:\/\//i.test(u || '') ? u : '#'; }
   function fmt(iso) {
@@ -143,18 +261,34 @@ footer { color: var(--muted); font-size: 12px; text-align: left; }
   }
   function next(iso) { var t = new Date(iso); if (isNaN(t)) return ''; t = new Date(t.getTime() + 4 * 3600e3); return fmt(t.toISOString()); }
 
+  // An item is blurred when it is tied to a mission past the viewer's progress,
+  // or marked as a spoiler with no mission the viewer has already finished.
+  function locked(x) {
+    var after = (typeof x.afterMission === 'number') ? x.afterMission : null;
+    if (after !== null) return prog === null || after > prog;
+    return !!x.spoiler;
+  }
+  function lockLabel(x) {
+    if (typeof x.afterMission === 'number') return 'Spoiler: after story mission ' + x.afterMission + '. Tap to show';
+    return 'Spoiler. Tap to show';
+  }
+
   function item(x) {
     var tag = ['CONFIRMED','REPORTED','RUMOR','WARNING'].indexOf(x.tag) > -1 ? x.tag : 'REPORTED';
     var label = tag === 'WARNING' ? 'Heads up' : tag;
     var extra = '';
     if (x.status) extra += '<span class="pill status-' + esc(x.status) + '">' + esc(x.status) + '</span>';
     if (x.version) extra += '<span class="pill">v' + esc(x.version) + '</span>';
-    if (x.availableAfter) extra += '<span class="pill">After: ' + esc(x.availableAfter) + '</span>';
+    if (typeof x.afterMission === 'number') extra += '<span class="pill">After mission ' + esc(x.afterMission) + '</span>';
+    else if (x.availableAfter) extra += '<span class="pill">After: ' + esc(x.availableAfter) + '</span>';
     var src = (x.sources || []).map(function (s) { return '<a href="' + esc(safeUrl(s.url)) + '" target="_blank" rel="noopener">' + esc(s.name) + '</a>'; }).join('');
     if (x.video) src += '<a href="' + esc(safeUrl(x.video)) + '" target="_blank" rel="noopener">Watch video</a>';
-    return '<li class="item ' + tag + '"><div class="top"><span class="pill ' + tag + '">' + label + '</span>' + extra + '<span class="title">' + esc(x.title) + '</span></div>' +
+    var isLocked = locked(x);
+    var inner = '<div class="inner"' + (isLocked ? ' aria-hidden="true"' : '') + '><div class="top"><span class="pill ' + tag + '">' + label + '</span>' + extra + '<span class="title">' + esc(x.title) + '</span></div>' +
       (x.body ? '<p>' + esc(x.body) + '</p>' : '') +
-      '<div class="src">' + (x.date ? '<span>' + esc(x.date) + '</span>' : '') + src + '</div></li>';
+      '<div class="src">' + (x.date ? '<span>' + esc(x.date) + '</span>' : '') + src + '</div></div>';
+    if (!isLocked) return '<li class="item ' + tag + '">' + inner + '</li>';
+    return '<li class="item locked ' + tag + '"><button type="button" class="reveal">' + esc(lockLabel(x)) + '</button>' + inner + '</li>';
   }
   function list(arr, emptyText) {
     if (!arr || !arr.length) return '<p class="empty">' + esc(emptyText) + '</p>';
@@ -163,28 +297,48 @@ footer { color: var(--muted); font-size: 12px; text-align: left; }
   function section(title, note, inner) {
     return '<section><h2>' + esc(title) + (note ? ' <small>' + esc(note) + '</small>' : '') + '</h2>' + inner + '</section>';
   }
-  function spoiler(title, note, arr, emptyText) {
-    var inner = (!arr || !arr.length) ? '<p class="empty">' + esc(emptyText) + '</p>' :
-      '<details><summary>Show ' + arr.length + ' spoiler-tagged item' + (arr.length > 1 ? 's' : '') + '</summary>' + list(arr, '') + '</details>';
-    return section(title, note, inner);
+
+  function renderProgress() {
+    var el = document.getElementById('progress');
+    var val = prog === null ? '' : prog;
+    el.innerHTML = '<span><b>My progress:</b> story missions finished</span>' +
+      '<span class="stepper"><button type="button" id="p-down" aria-label="One fewer mission">&minus;</button>' +
+      '<input id="p-val" type="number" inputmode="numeric" min="0" max="300" value="' + val + '" placeholder="?" aria-label="Story missions finished">' +
+      '<button type="button" id="p-up" aria-label="One more mission">+</button></span>' +
+      (prog === null ? '<span>Not set: every mission spoiler stays blurred.</span>' : '<button type="button" class="clear" id="p-clear">Clear</button>');
+    document.getElementById('p-down').onclick = function () { setProg(Math.max(0, (prog || 0) - 1)); };
+    document.getElementById('p-up').onclick = function () { setProg((prog === null ? 0 : prog) + 1); };
+    document.getElementById('p-val').onchange = function () { var v = parseInt(this.value, 10); setProg(isNaN(v) ? null : Math.max(0, Math.min(300, v))); };
+    var c = document.getElementById('p-clear'); if (c) c.onclick = function () { setProg(null); };
   }
+  function setProg(v) { prog = v; saveProg(v); renderProgress(); renderApp(); }
+
+  function renderApp() {
+    var patches = (d.patches || []).map(function (p) {
+      return { tag: 'CONFIRMED', title: (p.version ? 'v' + p.version + ': ' : '') + (p.title || 'Update'), body: p.body, date: p.date, sources: p.url ? [{ name: 'Details', url: p.url }] : [] };
+    });
+    app.innerHTML =
+      section("What's new", 'since the last scan', list(d.whatsNew, 'Nothing new this scan.')) +
+      section('Trending right now', 'what players are doing', list(d.trending, 'Fills in once people are playing.')) +
+      section('Open-world tips', 'vehicles, money, hidden spots, prep', list(d.openWorldTips, 'Fills in once people are playing.')) +
+      section('Glitches and bugs', 'with version and status', list(d.glitches, 'None reported yet.')) +
+      section('Mission branches', 'how missions can play out', list(d.missionBranches, 'None mapped yet.')) +
+      section('Missable content', 'what you can lose for good', list(d.missables, 'None confirmed yet.')) +
+      section('Patch notes', 'newest first', list(patches, 'No patches yet.'));
+  }
+
+  app.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('.reveal') : null;
+    if (!b) return;
+    var li = b.parentNode; li.classList.add('revealed');
+    var inner = li.querySelector('.inner'); if (inner) inner.removeAttribute('aria-hidden');
+  });
 
   document.getElementById('meta').innerHTML =
     '<span>Last scan: <b>' + fmt(d.lastUpdated) + '</b></span><span>Next scan: about <b>' + next(d.lastUpdated) + '</b></span>' +
     (d.gameVersion ? '<span>Game version: <b>' + esc(d.gameVersion) + '</b></span>' : '');
-
-  var patches = (d.patches || []).map(function (p) {
-    return { tag: 'CONFIRMED', title: (p.version ? 'v' + p.version + ': ' : '') + (p.title || 'Update'), body: p.body, date: p.date, sources: p.url ? [{ name: 'Details', url: p.url }] : [] };
-  });
-
-  app.innerHTML =
-    section("What's new", 'since the last scan', list(d.whatsNew, 'Nothing new this scan.')) +
-    section('Trending right now', 'what players are doing', list(d.trending, 'Fills in once people are playing.')) +
-    section('Open-world tips', 'vehicles, money, hidden spots, prep', list(d.openWorldTips, 'Fills in once people are playing.')) +
-    section('Glitches and bugs', 'with version and status', list(d.glitches, 'None reported yet.')) +
-    spoiler('Mission branches', 'how missions can play out', d.missionBranches, 'None mapped yet.') +
-    spoiler('Missable content', 'what you can lose for good', d.missables, 'None confirmed yet.') +
-    section('Patch notes', 'newest first', list(patches, 'No patches yet.'));
+  renderProgress();
+  renderApp();
 })();
 </script>
 </body>
