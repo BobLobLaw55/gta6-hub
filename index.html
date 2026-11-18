@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GTA 6 Co-pilot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Vice City after dark: deep bay-blue ground, sunset coral accent, one column of scannable cards */
+  --ground: #0f1424;
+  --panel: #171e33;
+  --line: #2a3352;
+  --ink: #eef1f8;
+  --muted: #9aa3bd;
+  --accent: #ff7a6b;
+  --good: #4fd1a1;
+  --warn: #f5c451;
+  --bad: #ff5d7a;
+  --info: #7fb2ff;
+  --display: "Anton", Impact, "Arial Narrow", sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--ground); color: var(--ink); font: 15px/1.5 var(--body); }
+.wrap { max-width: 760px; margin: 0 auto; padding: 28px 16px 64px; display: grid; gap: 20px; }
+header { display: grid; gap: 6px; border-bottom: 2px solid var(--accent); padding-bottom: 16px; }
+h1 { font: 44px/1 var(--display); letter-spacing: .5px; margin: 0; text-transform: uppercase; text-wrap: balance; }
+h1 span { color: var(--accent); }
+.meta { color: var(--muted); font-size: 13px; display: flex; flex-wrap: wrap; gap: 4px 16px; }
+.meta b { color: var(--ink); font-weight: 600; }
+section { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; display: grid; gap: 12px; }
+h2 { font: 22px/1.1 var(--display); letter-spacing: .4px; text-transform: uppercase; margin: 0; display: flex; align-items: baseline; gap: 10px; }
+h2 small { font: 500 12px var(--body); color: var(--muted); text-transform: none; letter-spacing: 0; }
+.items { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.item { display: grid; gap: 4px; padding: 10px 0 10px 12px; border-left: 3px solid var(--line); }
+.item.CONFIRMED { border-left-color: var(--good); }
+.item.REPORTED { border-left-color: var(--info); }
+.item.RUMOR { border-left-color: var(--warn); }
+.item.WARNING { border-left-color: var(--bad); }
+.item .top { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; }
+.item .title { font-weight: 600; }
+.item p { margin: 0; color: var(--ink); max-width: 65ch; }
+.item .src { font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 12px; }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+.pill { font: 500 11px/1 var(--mono); letter-spacing: .4px; padding: 4px 6px; border-radius: 4px; border: 1px solid currentColor; text-transform: uppercase; }
+.pill.CONFIRMED { color: var(--good); }
+.pill.REPORTED { color: var(--info); }
+.pill.RUMOR { color: var(--warn); }
+.pill.WARNING { color: var(--bad); }
+.pill.status-working { color: var(--good); }
+.pill.status-patched { color: var(--muted); }
+.pill.status-unconfirmed { color: var(--warn); }
+.empty { color: var(--muted); font-size: 14px; margin: 0; }
+details { border-top: 1px dashed var(--line); padding-top: 10px; }
+summary { cursor: pointer; color: var(--muted); font-size: 14px; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px; font-size: 12px; color: var(--muted); align-items: center; }
+footer { color: var(--muted); font-size: 12px; text-align: left; }
+@media (max-width: 420px) { h1 { font-size: 34px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>GTA 6 <span>Co-pilot</span></h1>
+    <div class="meta" id="meta"></div>
+    <div class="legend"><span class="pill CONFIRMED">Confirmed</span>multiple sources <span class="pill REPORTED">Reported</span>one source <span class="pill RUMOR">Rumor</span>unverified <span class="pill WARNING">Heads up</span>spoiler or risk</div>
+  </header>
+  <main id="app" style="display:grid;gap:20px"></main>
+  <footer>Story mode only. Light spoilers: nothing here reveals story beats unless you open a spoiler section.</footer>
+</div>
+
+<script id="data" type="application/json">
+{
+  "lastUpdated": "2026-11-18T09:00:00-05:00",
+  "gameVersion": "01.002.001 (pre-load)",
+  "whatsNew": [
+    {"tag": "REPORTED", "title": "US PS5 unlock is likely midnight Eastern tonight", "body": "PlayStation Store listings show the US and Canada unlocking at midnight ET on Nov 19 (9 p.m. PT Nov 18). One other outlet lists 6 a.m. ET instead, so the timing isn't settled.", "sources": [{"name": "Pro Game Guides", "url": "https://progameguides.com/gta/gta-6-launch-day-guide/"}, {"name": "New Game Network", "url": "https://www.newgamenetwork.com/gta-6-release-time/"}], "date": "2026-11-18"},
+    {"tag": "CONFIRMED", "title": "Pre-load is live: up to 212 GB", "body": "Pre-load opened Nov 10. Free about 250 GB to leave room for a possible day-one patch.", "sources": [{"name": "Overgear", "url": "https://overgear.com/guides/gta-6/what-to-do-before-launch/"}, {"name": "Leonida Playbook", "url": "https://leonidaplaybook.com/guides/day-one-patch/"}], "date": "2026-11-18"},
+    {"tag": "REPORTED", "title": "Second pre-launch update, still no patch notes", "body": "Version 01.002.001 is 602 MB on PS5 and 1.6 GB on Xbox. Rockstar hasn't confirmed a day-one patch, so another download could still land. Leave the console in rest mode with auto-downloads on.", "sources": [{"name": "Tech Times", "url": "https://www.techtimes.com/articles/330886/20261117/gta-6-gets-second-pre-launch-update-602-mb-ps5-16-gb-xbox-still-no-patch-notes.htm"}], "date": "2026-11-17"},
+    {"tag": "WARNING", "title": "Spoiler risk is high today", "body": "The review embargo is rumored to lift this morning, and a hacker group claims it has a playable build and could post endings. Mute GTA 6 keywords on social apps until you've played.", "sources": [{"name": "Notebookcheck", "url": "https://www.notebookcheck.net/GTA-6-review-copy-may-have-been-sent-to-YouTuber-who-posts-release-date-spoilers.1433695.0.html"}, {"name": "IBTimes", "url": "https://www.ibtimes.co.uk/gta-6-leaks-cyberleek-playable-build-spoilers-1815584"}], "date": "2026-11-18"}
+  ],
+  "trending": [],
+  "openWorldTips": [],
+  "glitches": [],
+  "missionBranches": [],
+  "missables": [],
+  "patches": [
+    {"date": "2026-11-17", "version": "01.002.001", "title": "Pre-load update", "body": "Pre-load update: 602 MB PS5, 1.6 GB Xbox. No patch notes.", "url": "https://www.techtimes.com/articles/330886/20261117/gta-6-gets-second-pre-launch-update-602-mb-ps5-16-gb-xbox-still-no-patch-notes.htm"}
+  ],
+  "seen": [
+    "https://progameguides.com/gta/gta-6-launch-day-guide/",
+    "https://www.newgamenetwork.com/gta-6-release-time/",
+    "https://overgear.com/guides/gta-6/what-to-do-before-launch/",
+    "https://leonidaplaybook.com/guides/day-one-patch/",
+    "https://www.techtimes.com/articles/330886/20261117/gta-6-gets-second-pre-launch-update-602-mb-ps5-16-gb-xbox-still-no-patch-notes.htm",
+    "https://www.notebookcheck.net/GTA-6-review-copy-may-have-been-sent-to-YouTuber-who-posts-release-date-spoilers.1433695.0.html",
+    "https://www.ibtimes.co.uk/gta-6-leaks-cyberleek-playable-build-spoilers-1815584"
+  ]
+}
+</script>
+
+<script>
+(function () {
+  var d;
+  try { d = JSON.parse(document.getElementById('data').textContent); } catch (e) { d = null; }
+  var app = document.getElementById('app');
+  if (!d) { app.innerHTML = '<p class="empty">The update data is broken. The next scan will rewrite it.</p>'; return; }
+
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function safeUrl(u) { return /^https?:\/\//i.test(u || '') ? u : '#'; }
+  function fmt(iso) {
+    var t = new Date(iso);
+    if (isNaN(t)) return esc(iso);
+    return t.toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' }) + ' ET';
+  }
+  function next(iso) { var t = new Date(iso); if (isNaN(t)) return ''; t = new Date(t.getTime() + 4 * 3600e3); return fmt(t.toISOString()); }
+
+  function item(x) {
+    var tag = ['CONFIRMED','REPORTED','RUMOR','WARNING'].indexOf(x.tag) > -1 ? x.tag : 'REPORTED';
+    var label = tag === 'WARNING' ? 'Heads up' : tag;
+    var extra = '';
+    if (x.status) extra += '<span class="pill status-' + esc(x.status) + '">' + esc(x.status) + '</span>';
+    if (x.version) extra += '<span class="pill">v' + esc(x.version) + '</span>';
+    if (x.availableAfter) extra += '<span class="pill">After: ' + esc(x.availableAfter) + '</span>';
+    var src = (x.sources || []).map(function (s) { return '<a href="' + esc(safeUrl(s.url)) + '" target="_blank" rel="noopener">' + esc(s.name) + '</a>'; }).join('');
+    if (x.video) src += '<a href="' + esc(safeUrl(x.video)) + '" target="_blank" rel="noopener">Watch video</a>';
+    return '<li class="item ' + tag + '"><div class="top"><span class="pill ' + tag + '">' + label + '</span>' + extra + '<span class="title">' + esc(x.title) + '</span></div>' +
+      (x.body ? '<p>' + esc(x.body) + '</p>' : '') +
+      '<div class="src">' + (x.date ? '<span>' + esc(x.date) + '</span>' : '') + src + '</div></li>';
+  }
+  function list(arr, emptyText) {
+    if (!arr || !arr.length) return '<p class="empty">' + esc(emptyText) + '</p>';
+    return '<ul class="items">' + arr.map(item).join('') + '</ul>';
+  }
+  function section(title, note, inner) {
+    return '<section><h2>' + esc(title) + (note ? ' <small>' + esc(note) + '</small>' : '') + '</h2>' + inner + '</section>';
+  }
+  function spoiler(title, note, arr, emptyText) {
+    var inner = (!arr || !arr.length) ? '<p class="empty">' + esc(emptyText) + '</p>' :
+      '<details><summary>Show ' + arr.length + ' spoiler-tagged item' + (arr.length > 1 ? 's' : '') + '</summary>' + list(arr, '') + '</details>';
+    return section(title, note, inner);
+  }
+
+  document.getElementById('meta').innerHTML =
+    '<span>Last scan: <b>' + fmt(d.lastUpdated) + '</b></span><span>Next scan: about <b>' + next(d.lastUpdated) + '</b></span>' +
+    (d.gameVersion ? '<span>Game version: <b>' + esc(d.gameVersion) + '</b></span>' : '');
+
+  var patches = (d.patches || []).map(function (p) {
+    return { tag: 'CONFIRMED', title: (p.version ? 'v' + p.version + ': ' : '') + (p.title || 'Update'), body: p.body, date: p.date, sources: p.url ? [{ name: 'Details', url: p.url }] : [] };
+  });
+
+  app.innerHTML =
+    section("What's new", 'since the last scan', list(d.whatsNew, 'Nothing new this scan.')) +
+    section('Trending right now', 'what players are doing', list(d.trending, 'Fills in once people are playing.')) +
+    section('Open-world tips', 'vehicles, money, hidden spots, prep', list(d.openWorldTips, 'Fills in once people are playing.')) +
+    section('Glitches and bugs', 'with version and status', list(d.glitches, 'None reported yet.')) +
+    spoiler('Mission branches', 'how missions can play out', d.missionBranches, 'None mapped yet.') +
+    spoiler('Missable content', 'what you can lose for good', d.missables, 'None confirmed yet.') +
+    section('Patch notes', 'newest first', list(patches, 'No patches yet.'));
+})();
+</script>
+</body>
+</html>
