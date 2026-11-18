@@ -283,6 +283,7 @@ footer { color: var(--muted); font-size: 12px; text-align: left; }
     else if (x.availableAfter) extra += '<span class="pill">After: ' + esc(x.availableAfter) + '</span>';
     var src = (x.sources || []).map(function (s) { return '<a href="' + esc(safeUrl(s.url)) + '" target="_blank" rel="noopener">' + esc(s.name) + '</a>'; }).join('');
     if (x.video) src += '<a href="' + esc(safeUrl(x.video)) + '" target="_blank" rel="noopener">Watch video</a>';
+    if (x.walkthrough) src += '<a href="' + esc(safeUrl(x.walkthrough)) + '" target="_blank" rel="noopener">Walkthrough video</a>';
     var isLocked = locked(x);
     var inner = '<div class="inner"' + (isLocked ? ' aria-hidden="true"' : '') + '><div class="top"><span class="pill ' + tag + '">' + label + '</span>' + extra + '<span class="title">' + esc(x.title) + '</span></div>' +
       (x.body ? '<p>' + esc(x.body) + '</p>' : '') +
