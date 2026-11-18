@@ -33,9 +33,9 @@ html, body { margin: 0; }
 body { background: var(--ground); color: var(--ink); font: 15px/1.5 var(--body); }
 .wrap { max-width: 760px; margin: 0 auto; padding: 20px 16px 64px; display: grid; gap: 20px; }
 header { display: grid; gap: 12px; }
-.hero { position: relative; height: 230px; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: #2a1250; }
-.hero svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-.hero .brand { position: absolute; left: 22px; top: 20px; right: 22px; display: grid; gap: 6px; }
+.hero { position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: #2a1250; }
+.hero img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+.hero .brand { position: absolute; left: 0; right: 0; bottom: 0; padding: 56px 22px 18px; display: grid; gap: 6px; background: linear-gradient(to bottom, rgba(18, 12, 36, 0) 0%, rgba(18, 12, 36, .78) 45%, rgba(18, 12, 36, .95) 100%); }
 h1 { font: 44px/1.02 var(--brand); margin: 0; color: #fff; text-shadow: 0 0 18px rgba(255, 62, 154, .55), 3px 3px 0 #1a0b36; text-wrap: balance; }
 h1 span { color: var(--accent); text-shadow: 0 0 20px rgba(255, 62, 154, .7), 3px 3px 0 #1a0b36; }
 .tagline { font: 600 12px/1 var(--mono); letter-spacing: 2px; text-transform: uppercase; color: var(--teal); text-shadow: 0 0 10px rgba(46, 230, 214, .5); }
@@ -72,55 +72,14 @@ details { border-top: 1px dashed var(--line); padding-top: 10px; }
 summary { cursor: pointer; color: var(--muted); font-size: 14px; }
 .legend { display: flex; flex-wrap: wrap; gap: 8px; font-size: 12px; color: var(--muted); align-items: center; }
 footer { color: var(--muted); font-size: 12px; text-align: left; }
-@media (max-width: 480px) { h1 { font-size: 30px; } .hero { height: 200px; } .hero .brand { left: 16px; top: 16px; } }
+@media (max-width: 560px) { .hero .brand { position: static; padding: 14px 16px 16px; background: var(--panel); } h1 { font-size: 30px; } }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
     <div class="hero">
-      <svg viewBox="0 0 760 230" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-        <defs>
-          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#2a1250"/>
-            <stop offset=".45" stop-color="#7a1f78"/>
-            <stop offset=".75" stop-color="#ff3e9a"/>
-            <stop offset="1" stop-color="#ffa24c"/>
-          </linearGradient>
-          <linearGradient id="sun" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#ffe066"/>
-            <stop offset="1" stop-color="#ff3e9a"/>
-          </linearGradient>
-          <mask id="stripes">
-            <rect width="760" height="230" fill="#fff"/>
-            <rect x="0" y="150" width="760" height="4" fill="#000"/>
-            <rect x="0" y="162" width="760" height="6" fill="#000"/>
-            <rect x="0" y="176" width="760" height="8" fill="#000"/>
-          </mask>
-        </defs>
-        <rect width="760" height="230" fill="url(#sky)"/>
-        <circle cx="560" cy="190" r="92" fill="url(#sun)" mask="url(#stripes)"/>
-        <rect x="0" y="192" width="760" height="38" fill="#120c24"/>
-        <g stroke="#2ee6d6" stroke-opacity=".35" stroke-width="1">
-          <line x1="0" y1="200" x2="760" y2="200"/>
-          <line x1="0" y1="212" x2="760" y2="212"/>
-          <line x1="380" y1="192" x2="380" y2="230"/>
-          <line x1="300" y1="192" x2="200" y2="230"/>
-          <line x1="460" y1="192" x2="560" y2="230"/>
-          <line x1="220" y1="192" x2="20" y2="230"/>
-          <line x1="540" y1="192" x2="740" y2="230"/>
-        </g>
-        <g fill="none" stroke="#120c24" stroke-linecap="round" transform="translate(-40 0)">
-          <path d="M690 196 C 688 160, 676 120, 652 92" stroke-width="7"/>
-          <path d="M652 92 C 632 84, 610 90, 596 110" stroke-width="6"/>
-          <path d="M652 92 C 640 72, 620 62, 600 66" stroke-width="6"/>
-          <path d="M652 92 C 662 70, 682 62, 704 70" stroke-width="6"/>
-          <path d="M652 92 C 674 88, 694 98, 704 118" stroke-width="6"/>
-          <path d="M652 92 C 650 72, 658 56, 670 48" stroke-width="6"/>
-          <path d="M736 196 C 736 172, 744 150, 760 132" stroke-width="6"/>
-          <path d="M760 132 C 748 120, 732 120, 722 130" stroke-width="5"/>
-        </g>
-      </svg>
+      <img src="hero.jpg" width="1600" height="900" alt="A clam in gold sunglasses and a gold chain, with a cigar, whiskey bottles and energy drinks, on a neon beach boardwalk at sunset">
       <div class="brand">
         <span class="tagline">GTA 6 story-mode co-pilot</span>
         <h1>Feeling Sixy <span>with my Clam</span></h1>
