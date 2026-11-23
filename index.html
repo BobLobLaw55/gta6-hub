@@ -51,6 +51,12 @@ h1 span { color: var(--accent); }
 .progress button:hover { background: var(--line); }
 .progress input { width: 46px; text-align: center; font-variant-numeric: tabular-nums; border-left: 1px solid var(--line); border-right: 1px solid var(--line); -moz-appearance: textfield; }
 .progress input::-webkit-outer-spin-button, .progress input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.progress .next { display: grid; gap: 8px; width: 100%; }
+.progress .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.progress input.mname { width: auto; flex: 1 1 220px; min-width: 0; text-align: left; padding: 0 10px; border: 1px solid var(--line); border-radius: 4px; background: var(--raise); }
+.progress .go { width: auto; padding: 0 14px; border: 1px solid var(--accent); border-radius: 4px; color: var(--ink); }
+.progress .found b { color: var(--accent); }
+.progress .msg { color: var(--warn); }
 .progress .clear { width: auto; padding: 0 10px; font-weight: 500; font-size: 13px; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; }
 main { display: grid; gap: 34px; }
 section { display: grid; gap: 4px; }
@@ -109,7 +115,7 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
     <div class="legend"><span><span class="pill CONFIRMED">Confirmed</span> 2+ sources</span><span><span class="pill REPORTED">Reported</span> 1 source</span><span><span class="pill RUMOR">Rumor</span> unverified</span><span><span class="pill WARNING">Heads up</span> risk or spoiler</span></div>
   </header>
   <main id="app" style="display:grid;gap:20px"></main>
-  <footer>Story mode only. Anything tied to a story mission or upgrade past your progress is blurred until you tap it. Your progress is saved on this device only.</footer>
+  <footer>Story mode only. Type the mission you're about to play to see what to do before and around it; anything tied to a later mission stays blurred until you tap it. Your progress is saved on this device only.</footer>
 </div>
 
 <script id="data" type="application/json">
@@ -143,8 +149,8 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
     },
     {
       "tag": "REPORTED",
-      "title": "Mission 71: plant every charge for more heist time",
-      "body": "How many charges you get here depends on how cleanly you finished the earlier cargo job; each one you plant adds time in the big Mission 74 heist. Planting with both leads is faster and boosts their relationship.",
+      "title": "Mission 72: plant every charge for more heist time",
+      "body": "How many charges you get here depends on how cleanly you finished the earlier cargo job; each one you plant adds time in the big Mission 75 heist. Planting with both leads is faster and boosts their relationship.",
       "sources": [
         {
           "name": "PowerPyx mission guide",
@@ -152,7 +158,7 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
         }
       ],
       "date": "2026-11-22",
-      "afterMission": 71
+      "afterMission": 72
     },
     {
       "tag": "REPORTED",
@@ -432,7 +438,7 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
     },
     {
       "tag": "REPORTED",
-      "title": "Chapter 3: the Key Cloner opens high-end cars",
+      "title": "Mission 61: the Key Cloner opens high-end cars",
       "body": "You get the Key Cloner partway through Chapter 3 for hacking supercars. Scan cars with the Waink app first; ones with Advanced Trackers alert police when you slow down, so pick cars with standard or no tracker.",
       "sources": [
         {
@@ -441,7 +447,7 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
         }
       ],
       "date": "2026-11-22",
-      "spoiler": true
+      "afterMission": 61
     },
     {
       "tag": "CONFIRMED",
@@ -458,7 +464,7 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
         }
       ],
       "date": "2026-11-22",
-      "spoiler": true
+      "afterMission": 52
     },
     {
       "tag": "REPORTED",
@@ -590,7 +596,7 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
   "missionBranches": [
     {
       "tag": "REPORTED",
-      "title": "Mission 36: have $900 ready",
+      "title": "Mission 37: have $900 ready",
       "body": "This Chapter 2 mission asks Lucia to pay $900 and gives no reward. Selling stolen cars to the buyer you meet earlier, mugging or robbing registers are quick ways to raise it.",
       "sources": [
         {
@@ -599,7 +605,7 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
         }
       ],
       "date": "2026-11-21",
-      "afterMission": 36
+      "afterMission": 37
     },
     {
       "tag": "REPORTED",
@@ -629,7 +635,7 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
     },
     {
       "tag": "REPORTED",
-      "title": "Mission 95: pays $40,000, use the Snap Gun",
+      "title": "Mission 98: pays $40,000, use the Snap Gun",
       "body": "Open the planning-room door quietly with the Snap Gun and grab the assault rifle when offered. On the escape, take the first right on the highway to dodge the roadblock.",
       "sources": [
         {
@@ -638,12 +644,12 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
         }
       ],
       "date": "2026-11-20",
-      "afterMission": 95
+      "afterMission": 98
     },
     {
       "tag": "REPORTED",
-      "title": "Mission 94: no rush despite the timer icon, pays $30,000 and a trophy",
-      "body": "The map marker looks time-limited, but you can do it any time before Mission 95. Lucia starts with a silenced pistol for quiet takedowns; it pays $30,000 plus the 'Family Matters' trophy.",
+      "title": "Mission 97: no rush despite the timer icon, pays $30,000 and a trophy",
+      "body": "The map marker looks time-limited, but you can do it any time before Mission 98. Lucia starts with a silenced pistol for quiet takedowns; it pays $30,000 plus the 'Family Matters' trophy.",
       "sources": [
         {
           "name": "PowerPyx mission guide",
@@ -651,11 +657,11 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
         }
       ],
       "date": "2026-11-20",
-      "afterMission": 94
+      "afterMission": 97
     },
     {
       "tag": "REPORTED",
-      "title": "Mission 85: nail the bag-throwing minigame",
+      "title": "Mission 87: nail the bag-throwing minigame",
       "body": "Hold R2/RT to fill the bar and release just before it reaches the marked section. Look at the highlighted white boxes in first person to spot points of interest.",
       "sources": [
         {
@@ -664,11 +670,11 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
         }
       ],
       "date": "2026-11-20",
-      "afterMission": 85
+      "afterMission": 87
     },
     {
       "tag": "REPORTED",
-      "title": "Mission 58: free rifle and armor in the boat",
+      "title": "Mission 59: free rifle and armor in the boat",
       "body": "When you have to defend the boat, open the back seats for an assault rifle and body armor, with unlimited ammo. Shoot the helicopter pilot through the front window to drop it fast.",
       "sources": [
         {
@@ -677,11 +683,11 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
         }
       ],
       "date": "2026-11-20",
-      "afterMission": 58
+      "afterMission": 59
     },
     {
       "tag": "REPORTED",
-      "title": "Mission 65: use Focus to stop runners",
+      "title": "Mission 66: use Focus to stop runners",
       "body": "Use Focus (L3 + R3) and aim for the legs to stop fleeing targets on foot without killing them, then search each bag.",
       "sources": [
         {
@@ -690,11 +696,11 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
         }
       ],
       "date": "2026-11-20",
-      "afterMission": 65
+      "afterMission": 66
     },
     {
       "tag": "REPORTED",
-      "title": "Mission 38: deliver the car undamaged for a $500 bonus",
+      "title": "Mission 39: deliver the car undamaged for a $500 bonus",
       "body": "The job pays $1,250 plus $500 if the car arrives in good shape, so you can just drive off instead of fighting. Soon after, you're gifted a garage and get the app for buying more garages.",
       "sources": [
         {
@@ -703,11 +709,11 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
         }
       ],
       "date": "2026-11-20",
-      "afterMission": 38
+      "afterMission": 39
     },
     {
       "tag": "REPORTED",
-      "title": "Mission 61: don't pay full price for the sneakers",
+      "title": "Mission 62: don't pay full price for the sneakers",
       "body": "You can buy the shoes for $1,580 or haggle and get the seller to drop the bag instead. Picking 'Show Shoes' at the club door gets you in free.",
       "sources": [
         {
@@ -716,12 +722,12 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
         }
       ],
       "date": "2026-11-20",
-      "afterMission": 61
+      "afterMission": 62
     },
     {
       "tag": "REPORTED",
-      "title": "Chapter 3 chase mission: shoot tires, not drivers",
-      "body": "In an early Chapter 3 job, aim for tires and engines and shoot cops in the legs to keep a Professional or Hardened rating; shooting drivers pushes you toward Violent. It pays $3,000.",
+      "title": "Mission 58: shoot tires, not drivers",
+      "body": "In this mission, aim for tires and engines and shoot cops in the legs to keep a Professional or Hardened rating; shooting drivers pushes you toward Violent. It pays $3,000.",
       "sources": [
         {
           "name": "PowerPyx mission guide",
@@ -729,11 +735,11 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
         }
       ],
       "date": "2026-11-20",
-      "spoiler": true
+      "afterMission": 58
     },
     {
       "tag": "REPORTED",
-      "title": "Mission 74: big heist pays $120,000, grab bills first",
+      "title": "Mission 75: big heist pays $120,000, grab bills first",
       "body": "Destroy all 3 cell towers beforehand to keep police distracted on the timed drive. In the vault take the bill stacks first (worth the most), and shoot guns out of hands to keep a Professional rating.",
       "sources": [
         {
@@ -742,7 +748,7 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
         }
       ],
       "date": "2026-11-20",
-      "afterMission": 74
+      "afterMission": 75
     },
     {
       "tag": "CONFIRMED",
@@ -777,7 +783,7 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
     },
     {
       "tag": "REPORTED",
-      "title": "Mission 37: grab optional cash and a new fence",
+      "title": "Mission 38: grab optional cash and a new fence",
       "body": "Looting during this mission's shootout gives about $1,000 extra, and finishing it unlocks a fence for stolen goods plus two robbery spots on the map. Stay in cover during the compound fight.",
       "sources": [
         {
@@ -786,7 +792,7 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
         }
       ],
       "date": "2026-11-19",
-      "afterMission": 37
+      "afterMission": 38
     }
   ],
   "missables": [
@@ -805,8 +811,8 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
     },
     {
       "tag": "WARNING",
-      "title": "Chapter 4: optional job vanishes once Mission 95 starts",
-      "body": "An optional Chapter 4 job starting at a bar in Millport is gone for good after Mission 95. Finishing the target pays $20,000; sparing him instead opens a follow-up job that gives you his vehicle.",
+      "title": "Chapter 4: optional job vanishes once Mission 98 starts",
+      "body": "An optional Chapter 4 job starting at a bar in Millport is gone for good after Mission 98. Finishing the target pays $20,000; sparing him instead opens a follow-up job that gives you his vehicle.",
       "sources": [
         {
           "name": "PowerPyx side quest guide",
@@ -844,12 +850,12 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
         }
       ],
       "date": "2026-11-20",
-      "spoiler": true
+      "afterMission": 97
     },
     {
       "tag": "WARNING",
-      "title": "Chapter 3: a unique pistol you can walk past for good",
-      "body": "In a Chapter 3 story mission for Lucia, a one-of-a-kind 1992 pistol sits in a photo room. After beating the first enemy, go back and grab it before moving on, or it's gone.",
+      "title": "Mission 70: a unique pistol you can walk past for good",
+      "body": "In this Chapter 3 mission for Lucia, a one-of-a-kind 1992 pistol sits in a photo room. After beating the first enemy, go back and grab it before moving on, or it's gone.",
       "sources": [
         {
           "name": "PowerPyx mission guide",
@@ -857,11 +863,11 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
         }
       ],
       "date": "2026-11-20",
-      "spoiler": true
+      "afterMission": 70
     },
     {
       "tag": "WARNING",
-      "title": "Mission 41: you need $15,000 saved to move on",
+      "title": "Mission 42: you need $15,000 saved to move on",
       "body": "This mission asks you to build up at least $15,000 before the next story step unlocks, so bank cash as you go. Optional side jobs like the dirt bike race, the armored-van job and the pawn shop hit are good ways to get there.",
       "sources": [
         {
@@ -870,11 +876,11 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
         }
       ],
       "date": "2026-11-20",
-      "afterMission": 41
+      "afterMission": 42
     },
     {
       "tag": "WARNING",
-      "title": "Mission 23: last free roam of Chapter 1, save first",
+      "title": "Mission 24: last free roam of Chapter 1, save first",
       "body": "Make a manual save in a new slot and finish Chapter 1 side stuff before starting it. Pocket cash and your first home are lost when it starts, so keep at least $5,000 in Family Savings; paused side quests come back later.",
       "sources": [
         {
@@ -883,7 +889,7 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
         }
       ],
       "date": "2026-11-19",
-      "afterMission": 23
+      "afterMission": 24
     },
     {
       "tag": "WARNING",
@@ -906,7 +912,7 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
     {
       "tag": "WARNING",
       "title": "Mission 6: two early side jobs vanish later",
-      "body": "Two optional side jobs open up after Mission 6 and disappear for good once you start Mission 24. The first one gives a Focus and Criminal Rating boost; neither counts for trophies.",
+      "body": "Two optional side jobs open up after Mission 6 and disappear for good once you start Mission 24 (the last free roam of Chapter 1). The first one gives a Focus and Criminal Rating boost; neither counts for trophies.",
       "sources": [
         {
           "name": "PowerPyx rum mission",
@@ -922,7 +928,7 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
     },
     {
       "tag": "REPORTED",
-      "title": "Mission 62: a time-limited race in Chapter 3",
+      "title": "Mission 63: a time-limited race in Chapter 3",
       "body": "An optional race that shows up around the middle of Chapter 3 is time-sensitive (hourglass icon) and disappears if ignored. Do it soon; pick the second race and rent a car, with $3,800 for first place.",
       "sources": [
         {
@@ -939,7 +945,7 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
         }
       ],
       "date": "2026-11-18",
-      "afterMission": 62
+      "afterMission": 63
     }
   ],
   "patches": [
@@ -1260,6 +1266,9 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
 }
 </script>
 
+<!-- Story mission order (PowerPyx main-mission list). Scan runs leave this block alone. -->
+<script id="missions" type="application/json">[{"n": 1, "ch": "Prologue", "t": "Prologue"}, {"n": 2, "ch": "Chapter 1", "t": "Gone Fishing"}, {"n": 3, "ch": "Chapter 1", "t": "Gear Up (Pick Up Another Gun)"}, {"n": 4, "ch": "Chapter 1", "t": "Lab Fees (Collect Brian's Rent)"}, {"n": 5, "ch": "Chapter 1", "t": "Just a Scratch (Fix Your Car)"}, {"n": 6, "ch": "Chapter 1", "t": "Unwanted Attention (Go See Cal)"}, {"n": 7, "ch": "Chapter 1", "t": "Pipework (Collect Mandy's Rent)"}, {"n": 8, "ch": "Chapter 1", "t": "Hey Arnold! (Meet Brian)"}, {"n": 9, "ch": "Chapter 1", "t": "Island Dreams (Work for Kenton)"}, {"n": 10, "ch": "Chapter 1", "t": "Feng Shui (Meet Cal)"}, {"n": 11, "ch": "Chapter 1", "t": "Coming Home (Lucia's Release)"}, {"n": 12, "ch": "Chapter 1", "t": "Clean Up After Donnie (Donnie's Drop)"}, {"n": 13, "ch": "Chapter 1", "t": "Buck Me (Set Up Bank Account)"}, {"n": 14, "ch": "Chapter 1", "t": "Down to Earth (Meet Brian)"}, {"n": 15, "ch": "Chapter 1", "t": "Deposit Cash Into BuckMe"}, {"n": 16, "ch": "Chapter 1", "t": "Save for the Future"}, {"n": 17, "ch": "Chapter 1", "t": "Day Release (Meet Mattia & Kat)"}, {"n": 18, "ch": "Chapter 1", "t": "Clear Skies (Join Donnie On A Job)"}, {"n": 19, "ch": "Chapter 1", "t": "Building a Life"}, {"n": 20, "ch": "Chapter 1", "t": "Swamped (Meet Brian)"}, {"n": 21, "ch": "Chapter 1", "t": "Don Gone (Head to Donnie's Trailer)"}, {"n": 22, "ch": "Chapter 1", "t": "Donnie's Lost Drugs"}, {"n": 23, "ch": "Chapter 1", "t": "Recalibration (Talk to Lucia)"}, {"n": 24, "ch": "Chapter 1", "t": "Tourist Trap (Take Up Mattia's Offer)"}, {"n": 25, "ch": "Chapter 1", "t": "Home Sweet Home"}, {"n": 26, "ch": "Chapter 1", "t": "Discharge Time"}, {"n": 27, "ch": "Chapter 2", "t": "What's in the Bag?"}, {"n": 28, "ch": "Chapter 2", "t": "Take Care of Jason (Play Nurse)"}, {"n": 29, "ch": "Chapter 2", "t": "Overnight Charges (See Linda, The Manager)"}, {"n": 30, "ch": "Chapter 2", "t": "Just Moved In"}, {"n": 31, "ch": "Chapter 2", "t": "Girl's Trip (Find Painkillers)"}, {"n": 32, "ch": "Chapter 2", "t": "Moses (Take A Vehicle to Moses)"}, {"n": 33, "ch": "Chapter 2", "t": "New Look"}, {"n": 34, "ch": "Chapter 2", "t": "How Do I Look?"}, {"n": 35, "ch": "Chapter 2", "t": "Painkiller Supplier"}, {"n": 36, "ch": "Chapter 2", "t": "Ambulance Chaser (Move the Ambulance)"}, {"n": 37, "ch": "Chapter 2", "t": "Behind on Payments"}, {"n": 38, "ch": "Chapter 2", "t": "Slam Dunk (Find Painkillers)"}, {"n": 39, "ch": "Chapter 2", "t": "Daily Driver (Steal the Crawler for Moses)"}, {"n": 40, "ch": "Chapter 2", "t": "Breakfast Run (Check on Jason)"}, {"n": 41, "ch": "Chapter 2", "t": "Coffee Break"}, {"n": 42, "ch": "Chapter 2", "t": "Prepare for Vice City"}, {"n": 43, "ch": "Chapter 2", "t": "Afternoon Delight (Rob Vicki's Boss)"}, {"n": 44, "ch": "Chapter 2", "t": "Checking Out (Move to Vice City)"}, {"n": 45, "ch": "Chapter 3", "t": "Welcome to Vice City"}, {"n": 46, "ch": "Chapter 3", "t": "Dealer's Choice (Go See Dre'Quan)"}, {"n": 47, "ch": "Chapter 3", "t": "Dubious Provenance (Visit the Antique Store)"}, {"n": 48, "ch": "Chapter 3", "t": "Mami Knows Best (Catch Up With Mia)"}, {"n": 49, "ch": "Chapter 3", "t": "Here, Kitty Kitty (Speak with Tyrone)"}, {"n": 50, "ch": "Chapter 3", "t": "Send Money to Lorena"}, {"n": 51, "ch": "Chapter 3", "t": "Encrypted Hard Drive"}, {"n": 52, "ch": "Chapter 3", "t": "Boobie Time (Talk to Boobie)"}, {"n": 53, "ch": "Chapter 3", "t": "Meet the Heders (Meet Brian & Lori)"}, {"n": 54, "ch": "Chapter 3", "t": "Yasmani's Jewelry Jobs"}, {"n": 55, "ch": "Chapter 3", "t": "Car Service (Steal The Car for Raul)"}, {"n": 56, "ch": "Chapter 3", "t": "Send More Money to Lorena"}, {"n": 57, "ch": "Chapter 3", "t": "Top Billing (Watch the Real Dimez)"}, {"n": 58, "ch": "Chapter 3", "t": "First Impressions (Meeting with Raul)"}, {"n": 59, "ch": "Chapter 3", "t": "Crosstown Traffic (Meet Raul) / Meet Karim"}, {"n": 60, "ch": "Chapter 3", "t": "Credit Check (Meet Raul's Crew)"}, {"n": 61, "ch": "Chapter 3", "t": "Clonin' Keys, Makin' GS (Steal the Zorrusso for Randy)"}, {"n": 62, "ch": "Chapter 3", "t": "Ride Or Die (Meet Dre'Quan)"}, {"n": 63, "ch": "Chapter 3", "t": "Raul's Next Job"}, {"n": 64, "ch": "Chapter 3", "t": "Sinfrontera National Bank (Scope Out the Bank)"}, {"n": 65, "ch": "Chapter 3", "t": "Security Expert"}, {"n": 66, "ch": "Chapter 3", "t": "Caught Slipping"}, {"n": 67, "ch": "Chapter 3", "t": "Heist Planning"}, {"n": 68, "ch": "Chapter 3", "t": "Company Property (Meet Brian)"}, {"n": 69, "ch": "Chapter 3", "t": "Safe Word (Steal the Practice Safe)"}, {"n": 70, "ch": "Chapter 3", "t": "The Missing Link (Meet Andrea)"}, {"n": 71, "ch": "Chapter 3", "t": "Cooties (Shoot the Music Video)"}, {"n": 72, "ch": "Chapter 3", "t": "Hidden Charges (Meet at the Planning Room / Prepping the Explosives)"}, {"n": 73, "ch": "Chapter 3", "t": "Bricked Up (Return to the Apartment)"}, {"n": 74, "ch": "Chapter 3", "t": "South Leonida Real Estate (Meet Mia)"}, {"n": 75, "ch": "Chapter 3", "t": "The Cartel Heist (Start the Heist / Wait for Raul to get in Touch)"}, {"n": 76, "ch": "Chapter 4", "t": "Ocean Beach"}, {"n": 77, "ch": "Chapter 4", "t": "Another Life"}, {"n": 78, "ch": "Chapter 4", "t": "Pool Day"}, {"n": 79, "ch": "Chapter 4", "t": "Company Cars (Speak to the Concierge)"}, {"n": 80, "ch": "Chapter 4", "t": "Lawyer Up (Meet Abe Gonzalez)"}, {"n": 81, "ch": "Chapter 4", "t": "Heavy Lifting (Bring Raul the Hard Drive)"}, {"n": 82, "ch": "Chapter 4", "t": "Party Hard (Work Personal Security)"}, {"n": 83, "ch": "Chapter 4", "t": "Pay Abe's Fee"}, {"n": 84, "ch": "Chapter 4", "t": "Photo/Shoot (Shoot a Promo)"}, {"n": 85, "ch": "Chapter 4", "t": "Making Gainz (Meet Raul / Raul's Plan)"}, {"n": 86, "ch": "Chapter 4", "t": "Blood Sweat and Gear (Work Out)"}, {"n": 87, "ch": "Chapter 4", "t": "Too Much Baggage (Scope Out the Airport)"}, {"n": 88, "ch": "Chapter 4", "t": "Watch It (Meet Dre'Quan)"}, {"n": 89, "ch": "Chapter 4", "t": "Amateur Hour (Workout)"}, {"n": 90, "ch": "Chapter 4", "t": "Call Nate"}, {"n": 91, "ch": "Chapter 4", "t": "Cash Injections (Hang Out With Nate)"}, {"n": 92, "ch": "Chapter 4", "t": "Dirty Work (Deal with Raina)"}, {"n": 93, "ch": "Chapter 4", "t": "Nate Will Be in Touch (Help Kordell's Crew)"}, {"n": 94, "ch": "Chapter 4", "t": "Adventures in Babysitting (Work Security for Andrés)"}, {"n": 95, "ch": "Chapter 4", "t": "Rafa's Kidnapping"}, {"n": 96, "ch": "Chapter 4", "t": "Fresh Evidence (Meet Dre'Quan)"}, {"n": 97, "ch": "Chapter 4", "t": "Child's Play (Rescue Rafa from Kidnappers)"}, {"n": 98, "ch": "Chapter 4", "t": "Power Play (Help Kordell's Crew)"}, {"n": 99, "ch": "Chapter 4", "t": "Close Surveillance (Spy on the Bodybuilders)"}, {"n": 100, "ch": "Chapter 4", "t": "Delivery Method (Help Andrea)"}, {"n": 101, "ch": "Chapter 4", "t": "Team Building (Meet Kordell)"}, {"n": 102, "ch": "Chapter 4", "t": "Fully Catered (Steal a Catering Truck)"}, {"n": 103, "ch": "Chapter 4", "t": "Heist Plans in Place"}, {"n": 104, "ch": "Chapter 4", "t": "Headliners (Help With The Launch Party)"}, {"n": 105, "ch": "Chapter 4", "t": "VCIA Takedown (Start the Airport Heist)"}, {"n": 106, "ch": "Chapter 4", "t": "Tie Up Loose Ends"}, {"n": 107, "ch": "Chapter 4", "t": "Call Valentina Back"}, {"n": 108, "ch": "Chapter 4", "t": "Sunset (Stop by the Front Desk)"}, {"n": 109, "ch": "Chapter 4", "t": "Starting From Zero"}, {"n": 110, "ch": "Chapter 5", "t": "Bird in the Hand"}, {"n": 111, "ch": "Chapter 5", "t": "Taking Liberties"}, {"n": 112, "ch": "Chapter 5", "t": "Doggie Bag (Meet Vinny)"}, {"n": 113, "ch": "Chapter 5", "t": "VC Baby (Talk to Mattia)"}, {"n": 114, "ch": "Chapter 5", "t": "Operation Savage Glory"}, {"n": 115, "ch": "Chapter 5", "t": "Honest Abe (Negotiate a Deal with Abe)"}, {"n": 116, "ch": "Chapter 5", "t": "Unfinished Business"}, {"n": 117, "ch": "Chapter 5", "t": "Pay Abe's Fee"}, {"n": 118, "ch": "Chapter 5", "t": "Protective Custody (Meet with Abe)"}, {"n": 119, "ch": "Chapter 5", "t": "The End of the Road"}]</script>
+
 <script>
 (function () {
   var d;
@@ -1267,10 +1276,37 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
   var app = document.getElementById('app');
   if (!d) { app.innerHTML = '<p class="empty">The update data is broken. The next scan will rewrite it.</p>'; return; }
 
-  var KEY = 'sixyclam-missions-done';
-  function loadProg() { try { var v = localStorage.getItem(KEY); return v === null ? null : Math.max(0, parseInt(v, 10) || 0); } catch (e) { return null; } }
-  function saveProg(v) { try { if (v === null) localStorage.removeItem(KEY); else localStorage.setItem(KEY, String(v)); } catch (e) {} }
-  var prog = loadProg();
+  var M = [];
+  try { M = JSON.parse(document.getElementById('missions').textContent) || []; } catch (e) { M = []; }
+  var KEY = 'sixyclam-next-mission', OLD = 'sixyclam-missions-done';
+  function loadNext() {
+    try {
+      var v = localStorage.getItem(KEY);
+      if (v !== null) return Math.max(1, parseInt(v, 10) || 1);
+      var o = localStorage.getItem(OLD);
+      if (o !== null) return Math.max(0, parseInt(o, 10) || 0) + 1;
+    } catch (e) {}
+    return null;
+  }
+  function saveNext(v) { try { if (v === null) localStorage.removeItem(KEY); else localStorage.setItem(KEY, String(v)); localStorage.removeItem(OLD); } catch (e) {} }
+  var nextM = loadNext();
+  // Missions up to and including the one you're about to play are unblurred.
+  var prog = nextM === null ? null : nextM;
+  var matches = [], matchIdx = 0, msg = '';
+  function norm(s) { return String(s || '').toLowerCase().replace(/[\u2018\u2019']/g, '').replace(/[^a-z0-9]+/g, ' ').trim(); }
+  function findMissions(q) {
+    var n = norm(q);
+    if (/^\d+$/.test(n)) { var k = parseInt(n, 10); return (k >= 1 && k <= M.length) ? [k] : []; }
+    if (n.length < 3) return [];
+    var exact = [], part = [];
+    M.forEach(function (m) {
+      var full = norm(m.t), main = norm(m.t.split(' (')[0]);
+      if (main === n || full === n) exact.push(m.n);
+      else if (full.indexOf(n) > -1) part.push(m.n);
+    });
+    return exact.length ? exact.concat(part) : part;
+  }
+  function mission(n) { for (var i = 0; i < M.length; i++) if (M[i].n === n) return M[i]; return null; }
 
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
   function safeUrl(u) { return /^https?:\/\//i.test(u || '') ? u : '#'; }
@@ -1321,18 +1357,26 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
 
   function renderProgress() {
     var el = document.getElementById('progress');
-    var val = prog === null ? '' : prog;
-    el.innerHTML = '<span><b>Story missions finished</b></span>' +
-      '<span class="stepper"><button type="button" id="p-down" aria-label="One fewer mission">&minus;</button>' +
-      '<input id="p-val" type="number" inputmode="numeric" min="0" max="300" value="' + val + '" placeholder="?" aria-label="Story missions finished">' +
-      '<button type="button" id="p-up" aria-label="One more mission">+</button></span>' +
-      (prog === null ? '<span>Set this to unblur tips for missions you have reached.</span>' : '<button type="button" class="clear" id="p-clear">Clear</button>');
-    document.getElementById('p-down').onclick = function () { setProg(Math.max(0, (prog || 0) - 1)); };
-    document.getElementById('p-up').onclick = function () { setProg((prog === null ? 0 : prog) + 1); };
-    document.getElementById('p-val').onchange = function () { var v = parseInt(this.value, 10); setProg(isNaN(v) ? null : Math.max(0, Math.min(300, v))); };
-    var c = document.getElementById('p-clear'); if (c) c.onclick = function () { setProg(null); };
+    var cur = nextM === null ? null : mission(nextM);
+    var h = '<div class="next"><label for="m-name"><b>What story mission is next?</b></label>' +
+      '<form class="row" id="m-form"><input id="m-name" class="mname" type="text" autocomplete="off" spellcheck="false" placeholder="Type its name, e.g. Gone Fishing" aria-label="Next story mission name">' +
+      '<button type="submit" class="go">Show me</button>' + (nextM !== null ? '<button type="button" class="clear" id="p-clear">Clear</button>' : '') + '</form>';
+    if (msg) h += '<span class="msg">' + esc(msg) + '</span>';
+    else if (cur) h += '<span class="found">Up next: <b>Mission ' + cur.n + '</b> \u00b7 ' + esc(cur.t.split(' (')[0]) + ' (' + esc(cur.ch) + ')' +
+      (matches.length > 1 ? ' <button type="button" class="clear" id="m-other">Not this one?</button>' : '') + '</span>';
+    else h += '<span>Type the mission you\'re about to play (as it shows in the game) and you\'ll get everything to do before and around it.</span>';
+    el.innerHTML = h + '</div>';
+    document.getElementById('m-form').onsubmit = function (e) {
+      e.preventDefault();
+      var q = document.getElementById('m-name').value;
+      matches = findMissions(q); matchIdx = 0;
+      if (!matches.length) { msg = 'Couldn\'t find that mission. Try a few words from its name, or its number.'; renderProgress(); return; }
+      msg = ''; setNext(matches[0]);
+    };
+    var c = document.getElementById('p-clear'); if (c) c.onclick = function () { matches = []; msg = ''; setNext(null); };
+    var o = document.getElementById('m-other'); if (o) o.onclick = function () { matchIdx = (matchIdx + 1) % matches.length; setNext(matches[matchIdx]); };
   }
-  function setProg(v) { prog = v; saveProg(v); renderProgress(); renderApp(); }
+  function setNext(v) { nextM = v; prog = v; saveNext(v); renderProgress(); renderApp(); }
 
   function sourceTable(arr) {
     if (!arr || !arr.length) return '<p class="empty">Not checked yet.</p>';
@@ -1348,7 +1392,18 @@ footer { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line)
     var patches = (d.patches || []).map(function (p) {
       return { tag: 'CONFIRMED', title: (p.version ? 'v' + p.version + ': ' : '') + (p.title || 'Update'), body: p.body, date: p.date, sources: p.url ? [{ name: 'Details', url: p.url }] : [] };
     });
-    app.innerHTML =
+    var around = '';
+    if (nextM !== null) {
+      var lo = nextM - 3, all = [];
+      ['missables', 'missionBranches', 'openWorldTips', 'trending', 'glitches', 'whatsNew'].forEach(function (k) {
+        (d[k] || []).forEach(function (x) {
+          if (typeof x.afterMission === 'number' && x.afterMission >= lo && x.afterMission <= nextM + 1 && all.indexOf(x) < 0) all.push(x);
+        });
+      });
+      all.sort(function (a, b) { return (b.afterMission === nextM) - (a.afterMission === nextM) || (a.tag === 'WARNING' ? -1 : 0) - (b.tag === 'WARNING' ? -1 : 0) || a.afterMission - b.afterMission; });
+      around = section('Before and around Mission ' + nextM, 'missables first, then tips for this stretch', list(all, 'Nothing mapped for this stretch yet. Check back after the next scan.'));
+    }
+    app.innerHTML = around +
       section("What's new", 'since the last scan', list(d.whatsNew, 'Nothing new this scan.')) +
       section('Trending right now', 'what players are doing', list(d.trending, 'Fills in once people are playing.')) +
       section('Open-world tips', 'vehicles, money, hidden spots, prep', list(d.openWorldTips, 'Fills in once people are playing.')) +
